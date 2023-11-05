@@ -1,9 +1,9 @@
 import localeMessageBox from '@/components/message-box/locale/en-US';
 import localeLogin from '@/views/login/locale/en-US';
 
-import localeWorkplace from '@/views/dashboard/workplace/locale/en-US';
+import localeWorkplace from '@/views/admin/workplace/locale/en-US';
 
-import localeMonitor from '@/views/dashboard/monitor/locale/en-US';
+import localeMonitor from '@/views/admin/monitor/locale/en-US';
 
 import localeSearchTable from '@/views/list/search-table/locale/en-US';
 import localeCardList from '@/views/list/card/locale/en-US';
