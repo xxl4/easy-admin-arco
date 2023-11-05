@@ -22,13 +22,13 @@ export function login(data: LoginData) {
 }
 
 export function logout() {
-  return axios.post<LoginRes>('/api/user/logout');
+  return axios.post<LoginRes>('/api/v1/logout');
 }
 
 export function getUserInfo() {
-  return axios.post<UserState>('/api/user/info');
+  return axios.get<UserState>('/api/v1/getinfo');
 }
 
 export function getMenuList() {
-  return axios.post<RouteRecordNormalized[]>('/api/user/menu');
+  return axios.post<RouteRecordNormalized[]>('/api/v1/menu');
 }

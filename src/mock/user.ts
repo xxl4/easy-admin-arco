@@ -13,7 +13,7 @@ setupMock({
     // Mock.XHR.prototype.withCredentials = true;
 
     // 用户信息
-    Mock.mock(new RegExp('/api/user/info'), () => {
+    Mock.mock(new RegExp('/api/v1/getinfo'), () => {
       if (isLogin()) {
         const role = window.localStorage.getItem('userRole') || 'admin';
         return successResponseWrap({
@@ -69,7 +69,7 @@ setupMock({
     });
 
     // 用户的服务端菜单
-    Mock.mock(new RegExp('/api/user/menu'), () => {
+    Mock.mock(new RegExp('/api/v1/menu'), () => {
       const menuList = [
         {
           path: '/dashboard',
