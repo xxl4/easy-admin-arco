@@ -1,10 +1,12 @@
 export default {
-  'login.form.title': 'Login to Arco Design Pro',
+  'login.form.title': 'Login to Easy-Admin',
   'login.form.userName.errMsg': 'Username cannot be empty',
   'login.form.password.errMsg': 'Password cannot be empty',
   'login.form.login.errMsg': 'Login error, refresh and try again',
+  'login.form.code.errMsg': 'Code cannot be empty',
   'login.form.login.success': 'welcome to use',
   'login.form.userName.placeholder': 'Username: admin',
+  'login.form.code.placeholder': 'Login code',
   'login.form.password.placeholder': 'Password: admin',
   'login.form.rememberPassword': 'Remember password',
   'login.form.forgetPassword': 'Forgot password',

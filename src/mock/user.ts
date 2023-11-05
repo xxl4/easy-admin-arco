@@ -8,6 +8,7 @@ import { MockParams } from '@/types/mock';
 import { isLogin } from '@/utils/auth';
 
 setupMock({
+  mock: false,
   setup() {
     // Mock.XHR.prototype.withCredentials = true;
 
@@ -39,7 +40,7 @@ setupMock({
     });
 
     // 登录
-    Mock.mock(new RegExp('/api/user/login'), (params: MockParams) => {
+    Mock.mock(new RegExp('/api/v1/login'), (params: MockParams) => {
       const { username, password } = JSON.parse(params.body);
       if (!username) {
         return failResponseWrap(null, '用户名不能为空', 50000);
@@ -63,7 +64,7 @@ setupMock({
     });
 
     // 登出
-    Mock.mock(new RegExp('/api/user/logout'), () => {
+    Mock.mock(new RegExp('/api/v1/logout'), () => {
       return successResponseWrap(null);
     });
 

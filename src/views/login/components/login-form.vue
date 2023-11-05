@@ -41,11 +41,26 @@
           </template>
         </a-input-password>
       </a-form-item>
+      <a-form-item 
+        field="code"
+        :rules="[{ required: true, message: $t('login.form.code.errMsg')}]"
+        :validate-trigger="['change', 'blur']"
+        hide-label
+      >
+      <a-input
+          v-model="userInfo.code"
+          :placeholder="$t('login.form.code.placeholder')"
+        >
+          <template #prefix>
+            <icon-code />
+          </template>
+        </a-input>
+      </a-form-item>
       <a-space :size="16" direction="vertical">
         <div class="login-form-password-actions">
           <a-checkbox
-            checked="rememberPassword"
-            :model-value="loginConfig.rememberPassword"
+            checked="rememberMe"
+            :model-value="loginConfig.rememberMe"
             @change="setRememberPassword as any"
           >
             {{ $t('login.form.rememberPassword') }}
@@ -81,13 +96,16 @@
   const userStore = useUserStore();
 
   const loginConfig = useStorage('login-config', {
-    rememberPassword: true,
+    rememberMe: true,
     username: 'admin', // 演示默认值
-    password: 'admin', // demo default value
+    password: 'wgYoVaLXNGCXqcNY', // demo default value
   });
   const userInfo = reactive({
+    rememberMe: loginConfig.value.rememberMe,
     username: loginConfig.value.username,
     password: loginConfig.value.password,
+    code: "",
+    uuid: "uKSmeZrqsDV2c2Ouf7yB",
   });
 
   const handleSubmit = async ({
@@ -98,10 +116,13 @@
     values: Record<string, any>;
   }) => {
     if (loading.value) return;
+    console.log("error");
+    console.log(errors)
     if (!errors) {
       setLoading(true);
       try {
         await userStore.login(values as LoginData);
+        console.log(userInfo);
         const { redirect, ...othersQuery } = router.currentRoute.value.query;
         router.push({
           name: (redirect as string) || 'Workplace',
@@ -110,12 +131,12 @@
           },
         });
         Message.success(t('login.form.login.success'));
-        const { rememberPassword } = loginConfig.value;
+        const { rememberMe } = loginConfig.value;
         const { username, password } = values;
         // 实际生产环境需要进行加密存储。
         // The actual production environment requires encrypted storage.
-        loginConfig.value.username = rememberPassword ? username : '';
-        loginConfig.value.password = rememberPassword ? password : '';
+        loginConfig.value.username = rememberMe ? username : '';
+        loginConfig.value.password = rememberMe ? password : '';
       } catch (err) {
         errorMessage.value = (err as Error).message;
       } finally {
@@ -124,7 +145,7 @@
     }
   };
   const setRememberPassword = (value: boolean) => {
-    loginConfig.value.rememberPassword = value;
+    loginConfig.value.rememberMe = value;
   };
 </script>
 
