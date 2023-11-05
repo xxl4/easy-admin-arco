@@ -14,20 +14,12 @@ const useUserStore = defineStore('user', {
   state: (): UserState => ({
     name: undefined,
     avatar: undefined,
-    job: undefined,
-    organization: undefined,
-    location: undefined,
-    email: undefined,
     introduction: undefined,
-    personalWebsite: undefined,
-    jobName: undefined,
-    organizationName: undefined,
-    locationName: undefined,
-    phone: undefined,
-    registrationDate: undefined,
-    accountId: undefined,
-    certification: undefined,
-    role: '',
+    deptId: undefined,
+    userName: undefined,
+    buttons: "",
+    permissions: "",
+    roles: ""
   }),
 
   getters: {
@@ -39,8 +31,8 @@ const useUserStore = defineStore('user', {
   actions: {
     switchRoles() {
       return new Promise((resolve) => {
-        this.role = this.role === 'user' ? 'admin' : 'user';
-        resolve(this.role);
+        this.roles = this.roles === 'user' ? 'admin' : 'user';
+        resolve(this.roles);
       });
     },
     // Set user's information
@@ -56,7 +48,6 @@ const useUserStore = defineStore('user', {
     // Get user's information
     async info() {
       const res = await getUserInfo();
-
       this.setInfo(res.data);
     },
 
@@ -65,12 +56,9 @@ const useUserStore = defineStore('user', {
       try {
         console.log(loginForm);
         const res = await userLogin(loginForm);
-        console.log("login res");
-        console.log(res);
         setToken(res.token);
       } catch (err) {
         clearToken();
-        console.log(err);
         throw err;
       }
     },

@@ -3,6 +3,7 @@ import setupMock, { successResponseWrap } from '@/utils/setup-mock';
 import { PostData } from '@/types/global';
 
 setupMock({
+  mock: false,
   setup() {
     Mock.mock(
       new RegExp('/api/public-opinion-analysis'),
