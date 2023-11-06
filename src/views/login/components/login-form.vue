@@ -51,6 +51,15 @@
           v-model="userInfo.code"
           :placeholder="$t('login.form.code.placeholder')"
         >
+        <template #append>
+                  <img
+                    v-if="captchaData.base64"
+                    width="100"
+                    height="40"
+                    :src="captchaData.base64"
+                    @click="fetchCaptcha()"
+                  />
+                </template>
           <template #prefix>
             <icon-code />
           </template>
@@ -89,6 +98,12 @@
   import useLoading from '@/hooks/loading';
   import type { LoginData } from '@/api/user';
 
+  const captchaData = ref({
+    base64: '',
+    id: '',
+    expire: 30,
+  });
+
   const router = useRouter();
   const { t } = useI18n();
   const errorMessage = ref('');
@@ -108,6 +123,7 @@
     uuid: "uKSmeZrqsDV2c2Ouf7yB",
   });
 
+ 
   const handleSubmit = async ({
     errors,
     values,
