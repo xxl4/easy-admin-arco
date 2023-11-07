@@ -71,10 +71,10 @@ const useAppStore = defineStore('app', {
           console.log(val, idx, array);
           const menuchildren:RouteRecordNormalized[] = [];
           val.children.forEach((cval, cidx, carray) => {
-             menuchildren.push({name: cval.menuName, path: cval.path, meta: {order: cval.sort, locale: cval.menuName, icon: cval.icon}})
+             menuchildren.push({name: cval.menuName, path: cval.path, meta: {order: cval.sort, locale: cval.menuName, icon: cval.icon, requiresAuth: true}})
           })
           if(val.menuName.length > 0)  {
-            menus.push({name: val.menuName, path: val.path, meta: {order: val.sort, locale: val.menuName, icon: val.icon}, children: menuchildren})
+            menus.push({name: val.menuName, path: val.path, meta: {order: val.sort, locale: val.menuName, icon: val.icon, requiresAuth: true}, children: menuchildren})
           }
           
         });
