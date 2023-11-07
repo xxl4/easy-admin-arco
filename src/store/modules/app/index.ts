@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import { Notification } from '@arco-design/web-vue';
+import { FormItem, Notification } from '@arco-design/web-vue';
 import type { NotificationReturn } from '@arco-design/web-vue/es/notification/interface';
-import type { RouteRecordNormalized } from 'vue-router';
+import type { RouteRecord, RouteRecordNormalized } from 'vue-router';
 import defaultSettings from '@/config/settings.json';
 import { getMenuList } from '@/api/user';
 import { AppState } from './types';
@@ -53,7 +53,33 @@ const useAppStore = defineStore('app', {
           closable: true,
         });
         const { data } = await getMenuList();
-        this.serverMenu = data;
+        
+        // console.log(typeof(data));
+        // console.log(data);
+
+        // const menus:RouteRecordNormalized[] = [];
+
+        // (Object.keys(data) as (keyof typeof data)[]).forEach((key, index) => {
+        //   // 👇️ name Bobby Hadz 0, country Chile 1
+        //   console.log(key, data[key], index);
+        //   menus[0]['path'] = data[key]['path']
+        //   menus[0]['name'] = data[key]['title']
+        // });
+        const menus:RouteRecordNormalized[] = [];
+        data.forEach((val, idx, array) => {
+          console.log("menu data foreach");
+          console.log(val, idx, array);
+          if(val.menuName.length > 0)  {
+            menus.push({name: val.menuName, path: val.path, meta: {order: val.sort, locale: val.menuName, icon: val.icon}})
+          }
+          
+        });
+        
+
+        
+        this.serverMenu = menus;
+        console.log("online menu");
+        console.log(this.serverMenu);
         notifyInstance = Notification.success({
           id: 'menuNotice',
           content: 'success',

@@ -3,9 +3,9 @@ import Mock from 'mockjs';
 import './user';
 import './message-box';
 
-import '@/views/admin/workplace/mock';
+import '@/views/dashboard/workplace/mock';
 
-import '@/views/admin/monitor/mock';
+import '@/views/dashboard/monitor/mock';
 
 import '@/views/list/card/mock';
 import '@/views/list/search-table/mock';
