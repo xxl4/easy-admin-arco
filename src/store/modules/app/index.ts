@@ -69,8 +69,12 @@ const useAppStore = defineStore('app', {
         data.forEach((val, idx, array) => {
           console.log("menu data foreach");
           console.log(val, idx, array);
+          const menuchildren:RouteRecordNormalized[] = [];
+          val.children.forEach((cval, cidx, carray) => {
+             menuchildren.push({name: cval.menuName, path: cval.path, meta: {order: cval.sort, locale: cval.menuName, icon: cval.icon}})
+          })
           if(val.menuName.length > 0)  {
-            menus.push({name: val.menuName, path: val.path, meta: {order: val.sort, locale: val.menuName, icon: val.icon}})
+            menus.push({name: val.menuName, path: val.path, meta: {order: val.sort, locale: val.menuName, icon: val.icon}, children: menuchildren})
           }
           
         });
