@@ -64,8 +64,8 @@ devDependencies:
     specifier: ^17.1.2
     version: 17.5.1
   '@commitlint/config-conventional':
-    specifier: ^17.1.0
-    version: 17.4.4
+    specifier: ^18.4.0
+    version: 18.4.0
   '@types/lodash':
     specifier: ^4.14.186
     version: 4.14.192
@@ -548,11 +548,11 @@ packages:
       - '@swc/wasm'
     dev: true
 
-  /@commitlint/config-conventional@17.4.4:
-    resolution: {integrity: sha512-u6ztvxqzi6NuhrcEDR7a+z0yrh11elY66nRrQIpqsqW6sZmpxYkDLtpRH8jRML+mmxYQ8s4qqF06Q/IQx5aJeQ==}
-    engines: {node: '>=v14'}
+  /@commitlint/config-conventional@18.4.0:
+    resolution: {integrity: sha512-vArwCZopsZs0FnGsh9AR7uUTPZ5oVGk8+qnEZWq2KTsMjrE0k80b+oZ32GSQmXQT2iMKVrDC8pKX5uKNkCe9Sw==}
+    engines: {node: '>=v18'}
     dependencies:
-      conventional-changelog-conventionalcommits: 5.0.0
+      conventional-changelog-conventionalcommits: 7.0.2
     dev: true
 
   /@commitlint/config-validator@17.4.4:
@@ -2273,13 +2273,11 @@ packages:
       q: 1.5.1
     dev: true
 
-  /conventional-changelog-conventionalcommits@5.0.0:
-    resolution: {integrity: sha512-lCDbA+ZqVFQGUj7h9QBKoIpLhl8iihkO0nCTyRNzuXtcd7ubODpYB04IFy31JloiJgG0Uovu8ot8oxRzn7Nwtw==}
-    engines: {node: '>=10'}
+  /conventional-changelog-conventionalcommits@7.0.2:
+    resolution: {integrity: sha512-NKXYmMR/Hr1DevQegFB4MwfM5Vv0m4UIxKZTTYuD98lpTknaZlSRrDOG4X7wIXpGkfsYxZTghUN+Qq+T0YQI7w==}
+    engines: {node: '>=16'}
     dependencies:
       compare-func: 2.0.0
-      lodash: 4.17.21
-      q: 1.5.1
     dev: true
 
   /conventional-commits-parser@3.2.4:
