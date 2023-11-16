@@ -18,7 +18,6 @@ export default function setupPermissionGuard(router: Router) {
 
       // 根据需要自行完善来源于服务端的菜单配置的permission逻辑
       // Refine the permission logic from the server's menu configuration as needed
-      
       if (
         !appStore.appAsyncMenus.length &&
         !WHITE_LIST.find((el) => el.name === to.name)
@@ -26,13 +25,9 @@ export default function setupPermissionGuard(router: Router) {
         await appStore.fetchServerMenuConfig();
       }
       const serverMenuConfig = [...appStore.appAsyncMenus, ...WHITE_LIST];
-      
       let exist = false;
       while (serverMenuConfig.length && !exist) {
         const element = serverMenuConfig.shift();
-        console.log("diff to name")
-        console.log(element?.name)
-        console.log(to.name);
         if (element?.name === to.name) exist = true;
         if (element?.children) {
           //
