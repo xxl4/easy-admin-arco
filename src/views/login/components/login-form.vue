@@ -96,13 +96,15 @@
   import { useStorage } from '@vueuse/core';
   import { useUserStore } from '@/store';
   import useLoading from '@/hooks/loading';
-  import type { LoginData } from '@/api/user';
+  import { LoginData, captcha} from '@/api/user';
 
   const captchaData = ref({
     base64: '',
     id: '',
     expire: 30,
   });
+
+  const timeInter: any = ref(null);
 
   const router = useRouter();
   const { t } = useI18n();
@@ -119,11 +121,29 @@
     rememberMe: loginConfig.value.rememberMe,
     username: loginConfig.value.username,
     password: loginConfig.value.password,
-    code: "",
-    uuid: "uKSmeZrqsDV2c2Ouf7yB",
+    code: '',
+    uuid: '',
   });
+  const fetchCaptcha = async () => {
+    const data = await captcha({ name: 'login' });
+    // console.log(data);
+    captchaData.value.base64 = data.data;
+    captchaData.value.id = data.id;
+    userInfo.uuid = data.id;
 
- 
+    clearInterval(timeInter.value);
+    // eslint-disable-next-line no-use-before-define
+    autoFetchCaptcha();
+  };
+
+  const autoFetchCaptcha = async () => {
+    timeInter.value = setInterval(() => {
+      fetchCaptcha();
+    }, 30 * 1000);
+  };
+
+  fetchCaptcha();
+
   const handleSubmit = async ({
     errors,
     values,
@@ -132,8 +152,6 @@
     values: Record<string, any>;
   }) => {
     if (loading.value) return;
-    console.log("error");
-    console.log(errors)
     if (!errors) {
       setLoading(true);
       try {

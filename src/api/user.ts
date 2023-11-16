@@ -17,6 +17,12 @@ export interface LoginRes {
   success: boolean;
   expire: string
 }
+
+export interface LoginCaptchaRes {
+  id: string;
+  data: string;
+}
+
 export function login(data: LoginData) {
   return axios.post<LoginRes>('/api/v1/login', data);
 }
@@ -31,4 +37,8 @@ export function getUserInfo() {
 
 export function getMenuList() {
   return axios.get<RouteRecordNormalized[]>('/api/v1/cusmenu');
+}
+
+export function captcha() {
+  return axios.get<LoginCaptchaRes>('/api/v1/captcha');
 }
