@@ -69,7 +69,7 @@ setupMock({
     });
 
     // 用户的服务端菜单
-    Mock.mock(new RegExp('/api/v1/menu'), () => {
+    Mock.mock(new RegExp('/api/v1/cusmenu'), () => {
       const menuList = [
         {
           path: '/dashboard',

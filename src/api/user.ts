@@ -30,5 +30,5 @@ export function getUserInfo() {
 }
 
 export function getMenuList() {
-  return axios.post<RouteRecordNormalized[]>('/api/v1/menu');
+  return axios.get<RouteRecordNormalized[]>('/api/v1/cusmenu');
 }

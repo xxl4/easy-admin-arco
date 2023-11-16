@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import { Notification } from '@arco-design/web-vue';
+import { FormItem, Notification } from '@arco-design/web-vue';
 import type { NotificationReturn } from '@arco-design/web-vue/es/notification/interface';
-import type { RouteRecordNormalized } from 'vue-router';
+import type { RouteRecord, RouteRecordNormalized } from 'vue-router';
 import defaultSettings from '@/config/settings.json';
 import { getMenuList } from '@/api/user';
 import { AppState } from './types';
@@ -52,8 +52,10 @@ const useAppStore = defineStore('app', {
           content: 'loading',
           closable: true,
         });
-        const { data } = await getMenuList();
+        const { data } = await getMenuList();        
         this.serverMenu = data;
+        console.log("online menu");
+        console.log(this.serverMenu);
         notifyInstance = Notification.success({
           id: 'menuNotice',
           content: 'success',

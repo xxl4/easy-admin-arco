@@ -8,10 +8,13 @@ import { cloneDeep } from 'lodash';
 export default function useMenuTree() {
   const permission = usePermission();
   const appStore = useAppStore();
+  console.log("first ");
   const appRoute = computed(() => {
     if (appStore.menuFromServer) {
       return appStore.appAsyncMenus;
     }
+    console.log("app client mneus");
+    console.log(appClientMenus);
     return appClientMenus;
   });
   const menuTree = computed(() => {
@@ -21,7 +24,6 @@ export default function useMenuTree() {
     });
     function travel(_routes: RouteRecordRaw[], layer: number) {
       if (!_routes) return null;
-
       const collector: any = _routes.map((element) => {
         // no access
         if (!permission.accessRouter(element)) {
