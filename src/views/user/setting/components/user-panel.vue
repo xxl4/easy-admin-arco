@@ -77,7 +77,7 @@
     },
     {
       label: 'userSetting.label.accountId',
-      value: userStore.accountId,
+      value: userStore.userId,
     },
     {
       label: 'userSetting.label.phone',

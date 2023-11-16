@@ -64,7 +64,6 @@
           }
         };
         menuTree.value.forEach((el: RouteRecordRaw) => {
-          console.log(el);
           if (isFind) return; // Performance optimization
           backtrack(el, [el.name as string]);
         });
