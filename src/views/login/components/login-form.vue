@@ -161,7 +161,7 @@
         console.log(userInfo);
         const { redirect, ...othersQuery } = router.currentRoute.value.query;
         router.push({
-          name: (redirect as string) || 'dashboard',
+          name: (redirect as string) || 'Workplace',
           query: {
             ...othersQuery,
           },
