@@ -101,7 +101,6 @@ const videoList = [
   },
 ];
 setupMock({
-  mock: false,
   setup() {
     Mock.mock(new RegExp('/api/content-data'), () => {
       const presetData = [58, 81, 53, 90, 64, 88, 49, 79];
